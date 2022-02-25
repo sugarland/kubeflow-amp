@@ -1,0 +1,22 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: KUBEFLOW-EKS-CLUSTER-2
+  region: us-east-2
+  version: '1.21'
+iam:
+  withOIDC: true
+managedNodeGroups:
+- name: default-ng
+  minSize: 1
+  maxSize: 8
+  desiredCapacity: 6
+  iam:
+    withAddonPolicies:
+      certManager: true
+      cloudWatch: true
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["*"]
+---
